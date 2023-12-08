@@ -30,7 +30,6 @@ public class Main {
         userDao.cleanUsersTable();
         System.out.println("Таблица пользователей очищена");
 
-
         userDao.dropUsersTable();
         System.out.println("Таблица пользователей удалена");
     }
