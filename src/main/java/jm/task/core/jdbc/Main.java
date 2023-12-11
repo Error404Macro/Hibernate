@@ -2,15 +2,16 @@ package jm.task.core.jdbc;
 
 
 import jm.task.core.jdbc.dao.UserDao;
-import jm.task.core.jdbc.dao.UserDaoJDBCImpl;
+import jm.task.core.jdbc.dao.UserDaoHibernateImpl;
 import jm.task.core.jdbc.model.User;
 
+import java.io.File;
 import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
         // реализуйте алгоритм здесь
-        UserDao userDao = new UserDaoJDBCImpl();
+       /* UserDao userDao = new UserDaoJDBCImpl();
 
         // Создание таблицы
         userDao.createUsersTable();
@@ -48,6 +49,32 @@ public class Main {
         // Удаляем
         userDao.dropUsersTable();
         System.out.println("Таблица пользователей удалена");
-        System.out.flush();
+        System.out.flush();*/
+
+        UserDao userDao = new UserDaoHibernateImpl();
+
+        // Создание таблицы
+        userDao.createUsersTable();
+
+        // Добавляем
+        userDao.saveUser("Artem", "2033", (byte) 25);
+        userDao.saveUser("Tom", "Cat", (byte) 30);
+        userDao.saveUser("Mike", "Johnson", (byte) 35);
+        userDao.saveUser("Ivan", "Ivanov", (byte) 40);
+
+        // Получаем
+        List<User> userList = userDao.getAllUsers();
+        System.out.println("Список пользователей:");
+        for (User user : userList) {
+            System.out.println(user);
+        }
+
+        // Очищаем
+        userDao.cleanUsersTable();
+        System.out.println("Таблица пользователей очищена");
+
+        // Удаляем
+        userDao.dropUsersTable();
+        System.out.println("Таблица пользователей удалена");
     }
 }
