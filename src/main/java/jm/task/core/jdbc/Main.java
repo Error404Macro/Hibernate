@@ -43,13 +43,11 @@ public class Main {
 
         // Очищаем
         userDao.cleanUsersTable();
-        System.out.println("Таблица пользователей очищена");
-        System.out.flush();
+
 
         // Удаляем
         userDao.dropUsersTable();
-        System.out.println("Таблица пользователей удалена");
-        System.out.flush();*/
+        */
 
         UserDao userDao = new UserDaoHibernateImpl();
 
